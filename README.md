@@ -29,13 +29,6 @@ This yields a single score for each episode.
 The environment is considered solved, when the average (over 100 episodes) of those scores is at least +0.5.
 
 
-The state space contains 33 dimensions corresponding to: 
-
-- position rotation  
-- velocity
-- angular velocities of the arm 
-
-
 ## Project Installation
 
 This project requires:

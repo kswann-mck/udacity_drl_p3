@@ -18,7 +18,7 @@ import torch
 from torch.utils.tensorboard import SummaryWriter
 import time
 import json
-from ddpg_agent import Agent
+from agent import Agent
 
 def train_ddpg(
     env,
@@ -28,8 +28,8 @@ def train_ddpg(
     break_early=False,
     solved_threshold=31.0,
     n_episodes=2000, 
-    state_size=33,
-    action_size=4,
+    state_size=8,
+    action_size=2,
     eps_start=1.0, 
     eps_end=0.01, 
     eps_decay=0.995,
@@ -134,6 +134,7 @@ def train_ddpg(
         start = time.time()
         while True:
             actions = agent.act(state=states)
+            actions = np.clip(actions, -1, 1)
             env_info = env.step(actions)[brain_name]
             next_states = env_info.vector_observations
             rewards = env_info.rewards
@@ -148,17 +149,17 @@ def train_ddpg(
                 break 
         duration = time.time() - start
         episode_durations.append(duration)
-        mean_accross_agents = np.mean(agent_scores)
-        scores_deque.append(mean_accross_agents)
-        scores.append(mean_accross_agents)
-        print('\rEpisode {}\tAverage Score: {:.2f}'.format(i_episode, np.mean(scores_deque)), end="")
+        max_accross_agents = np.max(agent_scores)
+        scores_deque.append(max_accross_agents)
+        scores.append(max_accross_agents)
+        print(f'\rEpisode {i_episode}\tAverage Score: {round(np.mean(scores_deque),4)}\tScore: {round(max_accross_agents, 4)}', end="")
         torch.save(agent.actor_local.state_dict(), f'checkpoint_actor{name}.pth')
         torch.save(agent.critic_local.state_dict(), f'checkpoint_critic{name}.pth')
-        writer.add_scalar('Score', mean_accross_agents, i_episode)
+        writer.add_scalar('Score', max_accross_agents, i_episode)
         writer.add_scalar('Average_Score', np.mean(scores_deque), i_episode)
         writer.add_scalar('Episode Duration', duration, i_episode)
         if i_episode % 100 == 0:
-            print('\rEpisode {}\tAverage Score: {:.2f}'.format(i_episode, np.mean(scores_deque)))
+            print(f'\rEpisode {i_episode}\tAverage Score: {round(np.mean(scores_deque),4)}\tMax Score: {round(np.max(max_accross_agents), 4)}\tMin Score: {round(np.min(max_accross_agents), 4)}')
             
         if np.mean(scores_deque) >= solved_threshold:
             print(f'\nEnvironment solved in {i_episode} episodes!\tAverage Score: {round(np.mean(scores_deque), 2)}')
