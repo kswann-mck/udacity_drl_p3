@@ -55,8 +55,8 @@ This project requires:
 - [optimize.py](optimize.py) - defines an optimization routine to search for optimal hyperparameters
 - [Report.md](Report.md) - defines the solution steps, algorithm and outputs from different training and optimiztion runs in markdown
 - [Report.ipynb](Report.ipynb) - defines the solution steps, algorithm and outputs from different training and optimiztion runs
-- [checkpoint_actor_base.pth](checkpoint_actor_optimal.pth) - the saved model weights for tha actor network from the solution that solved the task
-- [checkpoint_critic_base.pth](checkpoint_actor_optimal.pth) - the saved model weights for tha critic network from the solution that solved the task
+- [checkpoint_actor_base.pth](checkpoint_actor_base.pth) - the saved model weights for tha actor network from the solution that solved the task
+- [checkpoint_critic_base.pth](checkpoint_actor_base.pth) - the saved model weights for tha critic network from the solution that solved the task
 - [playing.gif](playing.gif) - a gif of the trained optimal agent playing
 - [environment.yml](environment.yml) - the conda environment file for reproducing the experiment
 

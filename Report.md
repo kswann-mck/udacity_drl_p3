@@ -18,15 +18,13 @@ The state space consists of 8 variables corresponding to the position and veloci
 
 Two continuous actions are available, corresponding to movement toward (or away from) the net, and jumping.
 
-# Rewards
+### Rewards
 
 The task is episodic. The task is considered solved when the maximum of the total score for the two agents is +0.5 (over 100 consecutive episodes).
 
 After each episode, we add up the rewards that each agent received (without discounting, to get a score for each agent. This yields 2 (potentially different) scores. We then take the maximum of these 2 scores.
 This yields a single score for each episode.
 The environment is considered solved, when the average (over 100 episodes) of those scores is at least +0.5.
-
-## Tennis Environment
 
 Below you can see the environment initialized with the state and action spaces shown.
 
