@@ -1,7 +1,7 @@
 # Project 3: Collaboration and Competition
 ## Udacity Deep Reinforcement Learning Nano-Degree
 by Kitson Swann
-submitted: 2021-04-19
+submitted: 2021-05-14
 
 This repository contains a solution to the third project of Udacity's Deep Reinforcement Learning Nano-degree.
 The instructions for the project are [here](https://github.com/udacity/deep-reinforcement-learning/tree/master/p3_collab-compet).
@@ -50,15 +50,13 @@ This project requires:
 ## Project Structure
 
 - [model.py](model.py) - defines the structure of the neural networks for the actor and critic using PyTorch
-- [ddpg_agent.py](ddpg_agent.py) - defines the agent implementation
+- [agent.py](agent.py) - defines the agent implementation
 - [train.py](train.py) - defines the training loop to run a training sequence with a given set of hyperparameters
 - [optimize.py](optimize.py) - defines an optimization routine to search for optimal hyperparameters
 - [Report.md](Report.md) - defines the solution steps, algorithm and outputs from different training and optimiztion runs in markdown
 - [Report.ipynb](Report.ipynb) - defines the solution steps, algorithm and outputs from different training and optimiztion runs
-- [checkpoint_actor_optimal.pth](checkpoint_actor_optimal.pth) - the saved model weights for tha actor network from the solution that solved the task
-- [checkpoint_critic_optimal.pth](checkpoint_actor_optimal.pth) - the saved model weights for tha critic network from the solution that solved the task
-- [checkpoint_actor_alternate.pth](checkpoint_actor_alternate.pth) - the saved model weights for tha actor network from the longer training run with a larger network
-- [checkpoint_critic_alternate.pth](checkpoint_critic_alternate.pth) - the saved model weights for tha critic network from the longer training run with a larger network
+- [checkpoint_actor_base.pth](checkpoint_actor_optimal.pth) - the saved model weights for tha actor network from the solution that solved the task
+- [checkpoint_critic_base.pth](checkpoint_actor_optimal.pth) - the saved model weights for tha critic network from the solution that solved the task
 - [playing.gif](playing.gif) - a gif of the trained optimal agent playing
 - [environment.yml](environment.yml) - the conda environment file for reproducing the experiment
 
@@ -66,9 +64,6 @@ This project requires:
 
 After you have successfully installed units and set up the python 3.6 environment and the conda environment 
 requirements. If you wish, you can re-run the experiment by re-running all the cells in 
-the [Report.ipynb](Report.ipynb). Note that the hyper-parameter search takes on the order of hours to run 
-without a GPU so don't re-run that if you don't have time.
-
-
+the [Report.ipynb](Report.ipynb).
 
 
