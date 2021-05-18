@@ -111,6 +111,24 @@ However, DQN estimates a Q function that outputs a value for each possible discr
 - an actor - which is a deterministic policy network that takes in a state and returns an action to take directly and,
 - a critic - a value network which takes in the state plus the action from the actor, and returns the value of the state/action pair
 
+#### Actor Network:
+
+The actor network is a policy network that takes in state, which consists of a stack of 3 observations of 8 real numbers for a total size of 24. It returns a single action For the tennis task, a vector of 2 real numbers.
+
+The network consists of two fully connected hidden layers, each of size 128 in my final solution, followed by a fully connected output layer of the action size. The two fully connected layers pass through ReLU activations, with the final layer passing through a tanh activation function to constrain the actions to between -1, 1 values.
+
+![actor_viz](actor_viz.png)
+
+#### Critic Network:
+
+The critic network is a value network that takes in both the state and the action produced by the actor, and returns a value for that action. In other words the network criticizes the action produced by the actor for a given state.
+
+The network consists of an input layer the same size as the state as in the actor above. The input layer is connected to a fully connected hidden layer of size 128 in my final model. After passing through the first fully connected layer, and a Leaky ReLU activation, the action chosen by the actor is concatenated to the output of the first fully connected layer. The combined values pass through the second fully connected layer of size 128, and another Leaky ReLU activation, followed by a final fully connected layer with a single output. There is no activation function applied to the last layer since the value produced by the critic does not need to be constrained between -1,1 like the actor.
+
+I chose Leaky ReLU as the activation function for the hidden layers, after seeing this solution mentioned by other students. Reading up on Leaky ReLU, which allows small negative outputs for values less than 0, it seems that it works better for training because it prevents the dead neurons that can happen with ReLU.
+
+![critic_viz](actor_viz.png)
+
 In the learning step in DDPG:
 
 - A minibatch is sampled from the replay buffer
